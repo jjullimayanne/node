@@ -3,15 +3,16 @@ const app = express();
 const mongoose = require("mongoose");
 // const dotenv = require("dotenv");
 const session = require("express-session");
+
 // dotenv.config();
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const { loginCheck } = require("./src/auth/passport");
 loginCheck(passport);
+require("dotenv").config();
 
 // Mongo DB conncetion
-const database =
-  "mongodb+srv://julli:julli123@cluster0.y6bzbkq.mongodb.net/?retryWrites=true&w=majority";
+const database = process.env.DB_HOST;
 mongoose
   .connect(database, { useUnifiedTopology: true, useNewUrlParser: true })
   .then(() => console.log("e don connect"))
