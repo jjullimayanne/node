@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+const session = require("express-session");
 const app = express();
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -7,8 +8,8 @@ const bodyParser = require("body-parser");
 const { loginCheck } = require("./src/auth/passport");
 loginCheck(passport);
 const dbUrl = process.env.DB_HOST;
+const flash = require("connect-flash");
 
-// Mongo DB conncetion
 const database = dbUrl;
 mongoose
   .connect(database, { useUnifiedTopology: true, useNewUrlParser: true })
@@ -18,11 +19,21 @@ mongoose
 app.set("view engine", "ejs");
 
 app.use(bodyParser.json());
+app.use(
+  session({
+    secret: "Node api",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+///app.use(flash());
 
 app.use("/", require("./routes/login/login"));
 app.use("/", require("./routes/register/register"));
+
 
 const PORT = process.env.PORT || 4111;
 

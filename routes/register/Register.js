@@ -11,4 +11,5 @@ router.get("/register", registerView);
 
 router.post("/register", registerUser);
 
+
 module.exports = router;
