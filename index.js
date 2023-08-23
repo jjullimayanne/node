@@ -6,9 +6,10 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const { loginCheck } = require("./src/auth/passport");
-loginCheck(passport);
+
 const dbUrl = process.env.DB_HOST;
 const flash = require("connect-flash");
+loginCheck(passport);
 
 const database = dbUrl;
 mongoose
@@ -33,7 +34,6 @@ app.use(flash());
 
 app.use("/", require("./routes/login/login"));
 app.use("/", require("./routes/register/register"));
-
 
 const PORT = process.env.PORT || 4111;
 

@@ -1,9 +1,9 @@
-const passport = require("passport");
+//const passport = require("passport");
 const loginView = (req, res) => {
   res.status().send(202);
 };
 
-const loginUser = (req, res, next) => {
+const loginUser = (req, res, next, passport) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -12,7 +12,7 @@ const loginUser = (req, res, next) => {
 
   passport.authenticate("local", {
     successRedirect: "/home",
-    failureRedirect: "/register",
+    failureRedirect: "/error",
     failureFlash: true, //
   })(req, res, next);
 };

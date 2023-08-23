@@ -6,20 +6,17 @@ const User = require("../services/register/models/RegisterModel");
 
 const loginCheck = (passport) => {
   passport.use(
-    new LocalStrategy((email, password, done) => {
-      User.findOne({ email: email }, (err, user) => {
-        if (err) {
-          return done(err);
-        }
+    new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
+      User.findOne({ email: email })
+      .then((user) => {
         if (!user) {
-          return done(null, false, { message: "Usuário não encontrado." });
-        }
-        if (!user.verifyPassword(password)) {
-          return done(null, false, { message: "Senha incorreta." });
+          console.log("wrong");
+          return done(null, false);
         }
         return done(null, user);
       });
     })
+
   );
 
   // passport.use(
@@ -58,6 +55,12 @@ const loginCheck = (passport) => {
     User.findById(id, (error, user) => {
       done(error, user);
     });
+  });
+
+  passport.authenticate("local", {
+    successRedirect: "/home",
+    failureRedirect: "/error",
+    failureFlash: true, //
   });
 };
 
