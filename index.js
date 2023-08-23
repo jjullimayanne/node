@@ -40,7 +40,7 @@ app.use(passport.session());
 app.use(flash());
 ///app.use(flash());
 
-app.use("/", require("./src/routes/login/login"));
+
 app.use("/", require("./src/routes/register/register"));
 
 const PORT = process.env.PORT || 4111;
