@@ -40,9 +40,8 @@ app.use(passport.session());
 app.use(flash());
 ///app.use(flash());
 
-
-app.use("/", require("./src/routes/register/register"));
-
+app.use("/", require("./src/services/login/router/loginRouter"));
+app.use("/", require("./src/services/register/router/RegisterRouter"));
 const PORT = process.env.PORT || 4111;
 
 app.listen(PORT, console.log("Server has started at port " + PORT));

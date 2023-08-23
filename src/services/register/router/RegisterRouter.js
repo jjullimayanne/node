@@ -3,7 +3,7 @@ const express = require("express");
 const {
   registerView,
   registerUser,
-} = require("../../services/register/controllers/RegisterController");
+} = require("../controllers/RegisterController");
 
 const router = express.Router();
 
