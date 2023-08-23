@@ -6,6 +6,14 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const { loginCheck } = require("./src/auth/passport");
+// const swaggerSpec = require("./docs/swagger");
+// const swaggerUi = require("swagger-ui-express");
+
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./docs/swagger.json");
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const dbUrl = process.env.DB_HOST;
 const flash = require("connect-flash");
