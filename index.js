@@ -1,10 +1,11 @@
-const express = require("express");
 require("dotenv").config();
+const express = require("express");
 const session = require("express-session");
 const app = express();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const flash = require("connect-flash");
 const { loginCheck } = require("./src/auth/passport");
 // const swaggerSpec = require("./docs/swagger");
 // const swaggerUi = require("swagger-ui-express");
@@ -16,7 +17,6 @@ const swaggerDocument = require("./docs/swagger.json");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const dbUrl = process.env.DB_HOST;
-const flash = require("connect-flash");
 loginCheck(passport);
 
 const database = dbUrl;

@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: mongo-node
+    image: mongo:latest
+    ports:
+      - "27017:27017"
