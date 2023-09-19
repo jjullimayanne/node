@@ -25,5 +25,5 @@ const UserSchema = new mongoose.Schema({
 });
 //export default mongoose.models.Pet || mongoose.model('Pet', PetSchema)
 ///export const User = mongoose.model('User', user);
-const User =  mongoose.models.User || mongoose.model("Users", UserSchema);
+const User = mongoose.models.User || mongoose.model("Users", UserSchema);
 module.exports = User;
